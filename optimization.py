@@ -15,8 +15,8 @@ import time
 import numpy as np
 from numpy.linalg import norm
 
-import ch, utils
-from utils import row, col
+from chumpy import ch, utils
+from chumpy.utils import row, col
 
 import scipy.sparse as sp
 import scipy.sparse

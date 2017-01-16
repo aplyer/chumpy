@@ -18,7 +18,7 @@ import weakref
 import copy as external_copy
 from functools import wraps
 from scipy.sparse.linalg.interface import LinearOperator
-from utils import row, col
+from chumpy.utils import row, col
 import collections
 from copy import deepcopy
 
@@ -609,7 +609,7 @@ class Ch(object):
 
             if hasattr(p, 'dterms') and p is not wrt and p.is_dr_wrt(wrt):
                 if not isinstance(p, Ch):
-                    print 'BROKEN!'
+                    print ('BROKEN!')
                     import pdb; pdb.set_trace()
 
                 indirect_dr = p.lmult_wrt(self._superdot(lhs, self._compute_dr_wrt_sliced(p)), wrt)
@@ -998,17 +998,17 @@ class ChLambda(Ch):
             return 1
 
 
-import ch_ops
-from ch_ops import *
+from chumpy import ch_ops
+from chumpy.ch_ops import *
 __all__ += ch_ops.__all__
 
-import reordering
-from reordering import *
+from chumpy import reordering
+from chumpy.reordering import *
 __all__ += reordering.__all__
 
 
-import linalg
-import ch_random as random
+from chumpy import linalg
+from chumpy import ch_random as random
 __all__ += ['linalg', 'random']
 
 
@@ -1032,16 +1032,16 @@ def main():
     x30 = Ch(30)
     
     tmp = ChLambda(lambda x, y, z: Ch(1) + Ch(2) * Ch(3) + 4)
-    print tmp.dr_wrt(tmp.x)
+    print (tmp.dr_wrt(tmp.x))
     import pdb; pdb.set_trace()
     #a(b(c(d(e(f),g),h)))
     
     blah = tst(x10, x20, x30)
     
-    print blah.r
+    print(blah.r)
 
 
-    print foo
+    print(foo)
     
     import pdb; pdb.set_trace()
     
